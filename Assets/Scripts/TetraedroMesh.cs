@@ -22,12 +22,17 @@ public class TetraedroMesh : MonoBehaviour {
 			mesh = meshFilter.sharedMesh;
 		}
 		mesh.Clear();
-		mesh.vertices = new Vector3[]{p0,p1,p2,p3};
+		mesh.vertices = new Vector3[]{
+			p0,p1,p2,
+			p0,p2,p3,
+			p2,p1,p3,
+			p0,p3,p1
+		};
 		mesh.triangles = new int[]{
 			0,1,2,
-			0,2,3,
-			2,1,3,
-			0,3,1
+			3,4,5,
+			6,7,8,
+			9,10,11
 		};
 		
 		mesh.RecalculateNormals();
