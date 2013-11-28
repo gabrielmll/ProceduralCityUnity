@@ -2,41 +2,89 @@
 using System.Collections;
 
 public class BoxMesh : MonoBehaviour {
+	void Start () {
+		Vector2[] normalPs = new Vector2[4];
 
-	//TODO: recebo 4 pontos
-	// 		- Calcular height and length
+		// CHANGE HERE FOR ANOTHER BUILDING SHAPE
+		// *only quadrilateral coordinates following clockwise from p0 (top left)*
+		Vector2 p0 = new Vector2 (2, 2);
+		Vector2 p1 = new Vector2 (6, 2);
+		Vector2 p2 = new Vector2 (6, -2);
+		Vector2 p3 = new Vector2 (-2, -2);
+		
+		normalPs = normalizeVertices (p0, p1, p2, p3);
+		
+		boxMesh (normalPs [0], normalPs [1], normalPs [2], normalPs [3], 0f);
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-	public float length = 5f;		// x
-	public float width = 5f;		// y
-	public float height = 5f;		// z
+	/*
+	 * This function will generate new points (p0, p1, p2, p3) with "x" base normalized to p0.x
+	 * and "Y" base normalizes to p3.y.
+	 * THIS:
+	 * 		|					
+	 * 	p0	|	p1					
+	 * 		|
+	 * -------------
+	 *		|
+	 *	p3	|	p2
+	 *	
+	 * 
+	 */
+	Vector2[] normalizeVertices(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3) {
+		Vector2[] normPs = new Vector2[4];
 
-	public float x0 = -50f;
-	public float x1 = 2f;
-	public float x2 = 2f;
-	public float x3 = -2f;
+		float normX;
+		float normY;
 
-	public float z0 = 50f;
-	public float z1 = 2f;
-	public float z2 = -2f;
-	public float z3 = -2f;
+		normX = p0.x;
+		normY = p3.y;
 
-	void boxMesh() {
+		normPs[0].x = p0.x - normX;
+		normPs[1].x = p1.x - normX;
+		normPs[2].x = p2.x - normX;
+		normPs[3].x = p3.x - normX;
+
+		normPs[0].y = p0.y - normY;
+		normPs[1].y = p1.y - normY;
+		normPs[2].y = p2.y - normY;
+		normPs[3].y = p3.y - normY;
+
+		return normPs;
+	}
+
+	void boxMesh(Vector2 b0, Vector2 b1, Vector2 b2, Vector2 b3, float floor) {
 		// You can change that line to provide another MeshFilter
 		MeshFilter filter = GetComponent<MeshFilter>();
 		Mesh mesh = filter.mesh;
 		mesh.Clear();
 
 		#region Vertices
-		Vector3 p0 = new Vector3( x0,	-width * .5f, z0 );
-		Vector3 p1 = new Vector3( x1, 	-width * .5f, z1 );
-		Vector3 p2 = new Vector3( x2, 	-width * .5f, z2 );
-		Vector3 p3 = new Vector3( x3,	-width * .5f, z3 );	
+		/*		
+		 * 		|
+		 *	p0	|	p1
+		 *		|
+		 *-------------
+		 *		|
+		 *	p3	|	p2
+		 *		|
+		 */
+
+		Vector3 p0 = new Vector3( b0.x,	2 * floor, b0.y );
+		Vector3 p1 = new Vector3( b1.x, 2 * floor, b1.y );
+		Vector3 p2 = new Vector3( b2.x, 2 * floor, b2.y );
+		Vector3 p3 = new Vector3( b3.x,	2 * floor, b3.y );	
 		
-		Vector3 p4 = new Vector3( x0,	width * .5f,  z0 );
-		Vector3 p5 = new Vector3( x1, 	width * .5f,  z1 );
-		Vector3 p6 = new Vector3( x2, 	width * .5f, z2 );
-		Vector3 p7 = new Vector3( x3,	width * .5f, z3 );
-		
+		Vector3 p4 = new Vector3( b0.x,	2 * floor + 2,  b0.y );
+		Vector3 p5 = new Vector3( b1.x,	2 * floor + 2,  b1.y );
+		Vector3 p6 = new Vector3( b2.x,	2 * floor + 2, b2.y );
+		Vector3 p7 = new Vector3( b3.x,	2 * floor + 2, b3.y );
+
 		Vector3[] vertices = new Vector3[]
 		{
 			// Bottom
@@ -156,14 +204,5 @@ public class BoxMesh : MonoBehaviour {
 		
 		mesh.RecalculateBounds();
 		mesh.Optimize();
-	}
-	// Use this for initialization
-	void Start () {
-		boxMesh ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
