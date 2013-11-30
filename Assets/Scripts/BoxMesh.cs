@@ -15,7 +15,6 @@ public class BoxMesh : MonoBehaviour {
 		normalPs = normalizeVertices (p0, p1, p2, p3);
 		
 		boxMesh (normalPs [0], normalPs [1], normalPs [2], normalPs [3], 0f);
-		
 	}
 	
 	// Update is called once per frame
@@ -60,7 +59,13 @@ public class BoxMesh : MonoBehaviour {
 
 	void boxMesh(Vector2 b0, Vector2 b1, Vector2 b2, Vector2 b3, float floor) {
 		// You can change that line to provide another MeshFilter
-		MeshFilter filter = GetComponent<MeshFilter>();
+		//MeshFilter filter = GetComponent<MeshFilter>();
+		MeshFilter filter = gameObject.AddComponent< MeshFilter >();
+		filter.gameObject.AddComponent<MeshRenderer>();
+
+		// Here sets the TEXTURE
+		filter.gameObject.renderer.material.mainTexture = Resources.Load ("test") as Texture;
+
 		Mesh mesh = filter.mesh;
 		mesh.Clear();
 
