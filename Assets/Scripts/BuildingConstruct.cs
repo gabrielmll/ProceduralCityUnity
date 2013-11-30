@@ -5,25 +5,28 @@ public class BuildingConstruct : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject building = new GameObject ("Predio");
+		/* Exemplo de 1 unico predio com 2 andares para ilustrar o loop
+
+		GameObject testBuilding = new GameObject ("Predio");
 		GameObject floor1 = new GameObject ("Floor1");
 
-		building.transform.Translate (7, 0, 0);
-		building.AddComponent ("BoxMesh");
-		floor1.transform.parent = building.transform;
+		testBuilding.transform.Translate (7, 0, 0);
+		testBuilding.AddComponent ("BoxMesh");
+		floor1.transform.parent = testBuilding.transform;
 		floor1.transform.Translate (7, 2, 0);
 		floor1.AddComponent ("BoxMesh");
+*/
 
-		GameObject[] testBuilding = new GameObject[10];
+		GameObject[] building = new GameObject[10];
 
-		testBuilding [0] = new GameObject ();
-		testBuilding[0].transform.Translate (0, 0, 7);
-		testBuilding[0].AddComponent ("BoxMesh");
-		for(int i = 1; i < 10; i++) {
-			testBuilding [i] = new GameObject();
-			testBuilding[i].transform.parent = testBuilding[0].transform;
-			testBuilding[i].transform.Translate (0, 2*i, 7);
-			testBuilding[i].AddComponent ("BoxMesh");
+		building [0] = new GameObject ();
+		building[0].transform.Translate (0, 0, 7);
+		building[0].AddComponent ("BoxMesh");
+		for(int i = 1; i < 5; i++) {
+			building [i] = new GameObject();
+			building[i].transform.parent = building[0].transform;
+			building[i].transform.Translate (0, 2*i, 7);
+			building[i].AddComponent ("BoxMesh");
 		}
 	}
 	
