@@ -14,17 +14,22 @@ public class BoxMesh : MonoBehaviour {
 	public static string buildingTex = null; 
 
 	void Start () {
-
 		Vector2[] normalPs = new Vector2[4];
-
+		
 		normalPs = normalizeVertices (p0, p1, p2, p3);
 		
 		boxMesh (normalPs [0], normalPs [1], normalPs [2], normalPs [3], 0f);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public static void CreateFloor() {
+
+
 	}
 
 	/*

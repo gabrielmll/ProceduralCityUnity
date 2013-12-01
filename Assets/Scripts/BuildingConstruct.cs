@@ -25,6 +25,7 @@ public class BuildingConstruct : MonoBehaviour {
 
 		building [0] = new GameObject ();
 		building[0].transform.Translate (buildingPosition.x, 0, buildingPosition.y);
+
 		BoxMesh.p0 = b0;
 		BoxMesh.p1 = b1;
 		BoxMesh.p2 = b2;
