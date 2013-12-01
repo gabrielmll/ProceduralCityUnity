@@ -2,16 +2,21 @@
 using System.Collections;
 
 public class BoxMesh : MonoBehaviour {
+	// variables for BUILDING SHAPE
+	// *only quadrilateral coordinates following clockwise from p0 (top left)*
+	// This values are default, but they're being changed in BuildingConstruct.cs
+
+	public static Vector2 p0 = new Vector2 (2, 2);
+	public static Vector2 p1 = new Vector2 (6, 2);
+	public static Vector2 p2 = new Vector2 (6, -2);
+	public static Vector2 p3 = new Vector2 (-2, -2);
+
+	public static string buildingTex = null; 
+
 	void Start () {
+
 		Vector2[] normalPs = new Vector2[4];
 
-		// CHANGE HERE FOR ANOTHER BUILDING SHAPE
-		// *only quadrilateral coordinates following clockwise from p0 (top left)*
-		Vector2 p0 = new Vector2 (2, 2);
-		Vector2 p1 = new Vector2 (6, 2);
-		Vector2 p2 = new Vector2 (6, -2);
-		Vector2 p3 = new Vector2 (-2, -2);
-		
 		normalPs = normalizeVertices (p0, p1, p2, p3);
 		
 		boxMesh (normalPs [0], normalPs [1], normalPs [2], normalPs [3], 0f);
@@ -64,7 +69,7 @@ public class BoxMesh : MonoBehaviour {
 		filter.gameObject.AddComponent<MeshRenderer>();
 
 		// Here sets the TEXTURE
-		filter.gameObject.renderer.material.mainTexture = Resources.Load ("test") as Texture;
+		filter.gameObject.renderer.material.mainTexture = Resources.Load (buildingTex) as Texture;
 
 		Mesh mesh = filter.mesh;
 		mesh.Clear();
@@ -85,10 +90,10 @@ public class BoxMesh : MonoBehaviour {
 		Vector3 p2 = new Vector3( b2.x, 2 * floor, b2.y );
 		Vector3 p3 = new Vector3( b3.x,	2 * floor, b3.y );	
 		
-		Vector3 p4 = new Vector3( b0.x,	2 * floor + 2,  b0.y );
-		Vector3 p5 = new Vector3( b1.x,	2 * floor + 2,  b1.y );
-		Vector3 p6 = new Vector3( b2.x,	2 * floor + 2, b2.y );
-		Vector3 p7 = new Vector3( b3.x,	2 * floor + 2, b3.y );
+		Vector3 p4 = new Vector3( b0.x,	2 * floor + 4,  b0.y );
+		Vector3 p5 = new Vector3( b1.x,	2 * floor + 4,  b1.y );
+		Vector3 p6 = new Vector3( b2.x,	2 * floor + 4, b2.y );
+		Vector3 p7 = new Vector3( b3.x,	2 * floor + 4, b3.y );
 
 		Vector3[] vertices = new Vector3[]
 		{
