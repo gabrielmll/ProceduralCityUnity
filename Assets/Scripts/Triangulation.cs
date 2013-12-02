@@ -3,25 +3,23 @@ using System.Collections;
 
 public class Triangulation : MonoBehaviour {
 
-  [System.Serializable]
-  public class Edge {
-    public Vector2 point1;
-    public Vector2 point2;
-
-    public Edge(Vector2 _point1, Vector2 _point2){
-      point1 = _point1;
-      point2 = _point2;
-    }
-  };
-
   public Vector2[] points;
   public Edge startingPoints;
+  public int num_triangles;
 
+  IEnumerator DrawTriangle(Edge commonEdge, Vector3 point) {
+    /*Debug.DrawLine(commonEdge.point1, commonEdge.point2, Color.white, 500f, false);
+    Debug.DrawLine(commonEdge.point2, point, Color.white, 500f, false);
+    Debug.DrawLine(point, commonEdge.point1, Color.white, 500f, false);*/
+    Triangle tri = gameObject.AddComponent("Triangle") as Triangle;
+    tri.setTriangle(commonEdge, point);
 
-  void DrawTriangle(Edge commonEdge, Vector2 point) {
-    Debug.DrawLine(commonEdge.point1, commonEdge.point2, Color.white, -1.0f, false);
-    Debug.DrawLine(commonEdge.point2, point, Color.white, -1.0f, false);
-    Debug.DrawLine(point, commonEdge.point1, Color.white, -1.0f, false);
+    yield return new WaitForSeconds(2);
+
+    if (num_triangles > 0) {
+      -- num_triangles;
+      GenerateNextPoint(new Edge(point, commonEdge.point1));
+    }
   }
 
   void GenerateNextPoint(Edge commonEdge) {
@@ -29,9 +27,10 @@ public class Triangulation : MonoBehaviour {
       Debug.LogError("Invalid common edge");
     }
 
-    Vector2 nextPoint = new Vector2(commonEdge.point1.x+Random.Range(10f,20f), commonEdge.point2.y+Random.Range(10f,20f));
-
-    DrawTriangle(commonEdge,nextPoint);
+    Vector3 nextPoint = new Vector3(Random.Range(5f,20f), 0, Random.Range(-10f,10f));
+    nextPoint += (commonEdge.point1+commonEdge.point2)/2;
+    Debug.Log(nextPoint);
+    StartCoroutine(DrawTriangle(commonEdge,nextPoint));
 
     Edge newEdge = new Edge(nextPoint, commonEdge.point1);
   }
@@ -46,3 +45,4 @@ public class Triangulation : MonoBehaviour {
 	
 	}
 }
+

@@ -26,24 +26,29 @@ public class BuildingConstruct : MonoBehaviour {
 		building [0] = new GameObject ();
 		building[0].transform.Translate (buildingPosition.x, 0, buildingPosition.y);
 
-		BoxMesh.p0 = b0;
-		BoxMesh.p1 = b1;
-		BoxMesh.p2 = b2;
-		BoxMesh.p3 = b3;
+    BoxMesh boxMesh = building[0].AddComponent("BoxMesh") as BoxMesh;
+
+		boxMesh.p0 = b0;
+		boxMesh.p1 = b1;
+		boxMesh.p2 = b2;
+		boxMesh.p3 = b3;
 
 		// pick a texture randomly
-		BoxMesh.buildingTex = "building" + Random.Range (1, 3);
+		boxMesh.buildingTex = "building" + Random.Range (1, 3);
 
-		building[0].AddComponent ("BoxMesh");
+		//building[0].AddComponent ("BoxMesh");
 
 		// Pile boxes in a random high
-		for(int i = 1; i < Random.Range(5, 15); i++) {
-			building [i] = new GameObject();
-			building[i].transform.parent = building[0].transform;
-			building[i].transform.Translate (buildingPosition.x, 4*i, buildingPosition.y);
-			building[i].AddComponent ("BoxMesh");
-
+    int numberOfFloors = Random.Range(5, 15);
+		for(int i = 1; i < numberOfFloors; i++) {
+      building[i] = Object.Instantiate(building[0]) as GameObject;
+			building[i].transform.Translate (0, 4*i, 0);
+			//building[i].AddComponent ("BoxMesh");
 		}
+
+    for(int i = 1; i < numberOfFloors; i++) {
+      building[i].transform.parent = building[0].transform;
+    }
 	}
 	
 	// Update is called once per frame
