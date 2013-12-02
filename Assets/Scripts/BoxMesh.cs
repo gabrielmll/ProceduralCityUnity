@@ -6,12 +6,12 @@ public class BoxMesh : MonoBehaviour {
 	// *only quadrilateral coordinates following clockwise from p0 (top left)*
 	// This values are default, but they're being changed in BuildingConstruct.cs
 
-	public static Vector2 p0 = new Vector2 (2, 2);
-	public static Vector2 p1 = new Vector2 (6, 2);
-	public static Vector2 p2 = new Vector2 (6, -2);
-	public static Vector2 p3 = new Vector2 (-2, -2);
+	public Vector2 p0;
+	public Vector2 p1;
+	public Vector2 p2;
+	public Vector2 p3;
 
-	public static string buildingTex = null; 
+	public string buildingTex; 
 
 	void Start () {
 		Vector2[] normalPs = new Vector2[4];
