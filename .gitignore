@@ -1,6 +1,23 @@
 # pasta TEMP do Unity #
 #######################
 Temp/
+Obj/
+UnityGenerated/
+Library/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
 
 # Compiled source #
 ###################
@@ -37,29 +54,6 @@ Temp/
 ._*
 .Spotlight-V100
 .Trashes
+Icon?
 ehthumbs.db
 Thumbs.db
-*.unityproj
-*.sln
-Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll.mdb
-Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
-Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll.mdb
-Library/assetDatabase3
-Library/metadata/1b/1b4e15e540e5a465187c46afc3e86711
-Library/metadata/21/212f1ab6bdf274e9b9a62b99357d1e52
-Library/metadata/2a/2a6e8c6173eb845ca92a259e0b60c6c9
-Library/metadata/44/449b48f7eb5d87a4baaa5fb73f875a59
-Library/metadata/79/79b85a87f613e411db4933ac6f23717b
-Library/metadata/81/8171543bf8c774b3cbf92d1716573ddc
-Library/metadata/a1/a108815c6baff4fd487238a8d44fe958
-Library/metadata/bb/bb520adadbc30419f96d405ecded12e5
-Library/metadata/cd/cd1d33a8a691c4bfab2092b54d81fb32
-Library/metadata/e8/e8b223c78e915d246a0ddc7726d1e585
-Assembly-CSharp-firstpass-vs.csproj
-Assembly-CSharp-firstpass.csproj
-Assembly-CSharp-vs.csproj
-Assembly-CSharp.csproj
-Library/expandedItems
-Library/guidmapper
-Library/metadata/31/31c06194ae7ca924698cdce177b94a0d
-Library/metadata/65/65e1ff5063389d14290ced2095b5928b
