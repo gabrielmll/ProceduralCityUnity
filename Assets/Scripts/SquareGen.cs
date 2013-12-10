@@ -43,7 +43,7 @@ public class SquareGen : MonoBehaviour {
         float dist = (playerPos-createdSquares[i].center).magnitude;
         if (dist > squareDimension*2) {
 
-          Debug.Log("Would kill on: "+createdSquares[i].center);
+          //Debug.Log("Kill on: "+createdSquares[i].center);
           Destroy(createdSquares[i].fullSquare);
           createdSquares.RemoveAt(i);
           break;
@@ -56,32 +56,32 @@ public class SquareGen : MonoBehaviour {
       // Round vector values to the closest to squareDimension
       Vector2 approxPlayerPos = new Vector2( (Mathf.Round(playerPos.x/squareDimension))*squareDimension,
                                              (Mathf.Round(playerPos.y/squareDimension))*squareDimension );
-      Debug.Log("Approx "+approxPlayerPos);
+      //Debug.Log("Approx "+approxPlayerPos);
       // For a verification of which quadrants have been checked (relative to the approximated player position)
       bool first = false, second = false, third = false, fourth = false; 
       for (int i = 0; i<createdSquares.Count; ++i) {
         Vector2 tempApproxPlayerPos = approxPlayerPos;
         if (!first && tempApproxPlayerPos == createdSquares[i].origin) {
           first = true;
-          Debug.Log("1st "+i);
+          //Debug.Log("1st "+i);
           continue;
         }
         tempApproxPlayerPos.y -= squareDimension;
         if (!second && tempApproxPlayerPos == createdSquares[i].origin) {
           second = true;
-          Debug.Log("2nd "+i);
+          //Debug.Log("2nd "+i);
           continue;
         }
         tempApproxPlayerPos.x -= squareDimension;
         if (!third && tempApproxPlayerPos == createdSquares[i].origin) {
           third = true;
-          Debug.Log("3rd "+i);
+          //Debug.Log("3rd "+i);
           continue;
         }
         tempApproxPlayerPos.y += squareDimension;
         if (!fourth && tempApproxPlayerPos == createdSquares[i].origin) {
           fourth = true;
-          Debug.Log("4th "+i);
+          //Debug.Log("4th "+i);
           continue;
         }
       }
