@@ -13,7 +13,7 @@ public class BuildingConstruct : MonoBehaviour {
 
 	}
 	// Use this for initialization
-	void CreateBuilding (Vector2 buildingPosition) {
+  void CreateBuilding (Vector2 buildingPosition) {
 		// These variables determine the shape of the building
 		// They're random for now
 		Vector2 b0 = new Vector2 (Random.Range(-10, 0), Random.Range(10, 0));
