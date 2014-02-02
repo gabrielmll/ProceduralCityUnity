@@ -34,7 +34,7 @@ public class BuildingConstruct : MonoBehaviour {
 		boxMesh.p3 = b3;
 
 		// pick a texture randomly
-		boxMesh.buildingTex = "building" + Random.Range (1, 3);
+		boxMesh.buildingTex = "building" + Random.Range (1, 56);
 
 		//building[0].AddComponent ("BoxMesh");
 
